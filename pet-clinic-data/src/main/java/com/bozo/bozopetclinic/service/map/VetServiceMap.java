@@ -1,6 +1,5 @@
 package com.bozo.bozopetclinic.service.map;
 
-import com.bozo.bozopetclinic.model.Owner;
 import com.bozo.bozopetclinic.model.Vet;
 import com.bozo.bozopetclinic.service.CrudService;
 

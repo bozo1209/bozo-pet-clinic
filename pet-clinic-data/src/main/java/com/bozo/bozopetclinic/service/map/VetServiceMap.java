@@ -1,11 +1,11 @@
 package com.bozo.bozopetclinic.service.map;
 
 import com.bozo.bozopetclinic.model.Vet;
-import com.bozo.bozopetclinic.service.CrudService;
+import com.bozo.bozopetclinic.service.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();

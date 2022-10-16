@@ -2,9 +2,11 @@ package com.bozo.bozopetclinic.service.map;
 
 import com.bozo.bozopetclinic.model.Vet;
 import com.bozo.bozopetclinic.service.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {

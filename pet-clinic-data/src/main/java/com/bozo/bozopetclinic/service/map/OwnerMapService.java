@@ -5,12 +5,14 @@ import com.bozo.bozopetclinic.service.OwnerService;
 import com.bozo.bozopetclinic.service.PetService;
 import com.bozo.bozopetclinic.service.PetTypeService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

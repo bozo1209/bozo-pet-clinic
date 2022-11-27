@@ -5,12 +5,14 @@ import com.bozo.bozopetclinic.service.SpecialtyService;
 import com.bozo.bozopetclinic.service.VetService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialtyService specialtyService;

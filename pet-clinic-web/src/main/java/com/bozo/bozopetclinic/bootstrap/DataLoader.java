@@ -2,12 +2,14 @@ package com.bozo.bozopetclinic.bootstrap;
 
 import com.bozo.bozopetclinic.model.*;
 import com.bozo.bozopetclinic.service.*;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
+@AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
@@ -16,23 +18,10 @@ public class DataLoader implements CommandLineRunner {
     private final SpecialtyService specialtyService;
     private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService,
-                      VetService vetService,
-                      PetTypeService petTypeService,
-                      SpecialtyService specialtyService,
-                      VisitService visitService) {
-        this.ownerService = ownerService;
-        this.vetService = vetService;
-        this.petTypeService = petTypeService;
-        this.specialtyService = specialtyService;
-        this.visitService = visitService;
-    }
-
     @Override
     public void run(String... args) throws Exception {
 
-//        int count = petTypeService.findAll().size();
-        int count = 0;
+        int count = petTypeService.findAll().size();
 
         if (count == 0){
             loadData();

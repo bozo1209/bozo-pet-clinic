@@ -14,6 +14,18 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner extends Person{
 
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "telephone")
+    private String telephone;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private Set<Pet> pets = new HashSet<>();
+
     @Builder
     public Owner(Long id,
                  String firstName,
@@ -28,16 +40,4 @@ public class Owner extends Person{
         this.telephone = telephone;
         this.pets = pets;
     }
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "telephone")
-    private String telephone;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private Set<Pet> pets = new HashSet<>();
 }

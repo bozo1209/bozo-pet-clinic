@@ -74,4 +74,9 @@ class OwnerControllerTest {
 
         verifyNoInteractions(ownerService);
     }
+
+    @Test
+    void testThatWillFailsAndWillBeDeletedLater(){
+        assertEquals(1,2);
+    }
 }

@@ -83,8 +83,4 @@ class OwnerMapServiceTest {
         assertNull(smith);
     }
 
-    @Test
-    void anotherTestThatWillFailsAndWillBeDeletedLater(){
-        assertEquals(1,2);
-    }
 }

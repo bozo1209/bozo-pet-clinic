@@ -6,6 +6,7 @@ import com.bozo.bozopetclinic.model.PetType;
 import com.bozo.bozopetclinic.service.OwnerService;
 import com.bozo.bozopetclinic.service.PetService;
 import com.bozo.bozopetclinic.service.PetTypeService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -18,17 +19,12 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping(path = "/owners/{ownerId}")
+@AllArgsConstructor
 public class PetController {
 
     private final PetService petService;
     private final OwnerService ownerService;
     private final PetTypeService petTypeService;
-
-    public PetController(PetService petService, OwnerService ownerService, PetTypeService petTypeService) {
-        this.petService = petService;
-        this.ownerService = ownerService;
-        this.petTypeService = petTypeService;
-    }
 
     @ModelAttribute("types")
     public Collection<PetType> populatePetTypes(){

@@ -2,6 +2,7 @@ package com.bozo.bozopetclinic.controllers;
 
 import com.bozo.bozopetclinic.model.Owner;
 import com.bozo.bozopetclinic.service.OwnerService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,13 +14,10 @@ import java.util.List;
 
 @RequestMapping(path = "/owners")
 @Controller
+@AllArgsConstructor
 public class OwnerController {
 
     private final OwnerService ownerService;
-
-    public OwnerController(OwnerService ownerService) {
-        this.ownerService = ownerService;
-    }
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder){

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Getter
@@ -42,6 +43,8 @@ public class Owner extends Person{
         if (pets != null){
             this.pets = pets;
         }
+
+//        this.pets =  Optional.ofNullable(pets).filter(v -> v.size() > 0).orElseGet(this::getPets);
     }
     
     public Pet getPet(String name){

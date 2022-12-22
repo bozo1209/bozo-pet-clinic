@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping(path = "/owners/{ownerId}")
 @AllArgsConstructor
 public class VisitController {
 
@@ -34,12 +35,12 @@ public class VisitController {
         return visit;
     }
 
-    @GetMapping(path = "/owners/*/pets/{petId}/visits/new")
+    @GetMapping(path = "/pets/{petId}/visits/new")
     public String initNewVisitForm(@PathVariable long petId, Model model){
         return "pets/createOrUpdateVisitForm";
     }
 
-    @PostMapping(path = "/owners/{ownerId}/pets/{petId}/visits/new")
+    @PostMapping(path = "/pets/{petId}/visits/new")
     public String processNewVisitForm(@Valid Visit visit, BindingResult result){
         if (result.hasErrors()){
             return "pets/createOrUpdateVisitForm";

@@ -1,0 +1,51 @@
+package com.bozo.bozopetclinic.controllers;
+
+import com.bozo.bozopetclinic.model.Pet;
+import com.bozo.bozopetclinic.model.Visit;
+import com.bozo.bozopetclinic.service.PetService;
+import com.bozo.bozopetclinic.service.VisitService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@Controller
+@AllArgsConstructor
+public class VisitController {
+
+    private final VisitService visitService;
+    private final PetService petService;
+
+    @InitBinder
+    public void setAllowedFields(WebDataBinder dataBinder){
+        dataBinder.setDisallowedFields("id");
+    }
+
+    @ModelAttribute("visit")
+    public Visit loadPetWithVisit(@PathVariable Long petId, Model model){
+        Pet pet = petService.findById(petId);
+        model.addAttribute("pet", pet);
+        Visit visit = Visit.builder().build();
+        pet.getVisits().add(visit);
+        return visit;
+    }
+
+    @GetMapping(path = "/owners/*/pets/{petId}/visits/new")
+    public String initNewVisitForm(@PathVariable long petId, Model model){
+        return "pets/createOrUpdateVisitForm";
+    }
+
+    @PostMapping(path = "/owners/{ownerId}/pets/{petId}/visits/new")
+    public String processNewVisitForm(@Valid Visit visit, BindingResult result){
+        if (result.hasErrors()){
+            return "pets/createOrUpdateVisitForm";
+        }else {
+            visitService.save(visit);
+            return "redirect:/owners/{ownerId}";
+        }
+    }
+}

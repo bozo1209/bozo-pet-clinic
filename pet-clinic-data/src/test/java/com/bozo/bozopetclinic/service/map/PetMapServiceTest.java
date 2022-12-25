@@ -76,31 +76,31 @@ class PetMapServiceTest {
     @Test
     void deleteById() {
         petMapService.deleteById(petId);
-        Owner findedOwner = ownerMapService.findByLastName(ownerLastName);
-        PetType findedPetType = petTypeMapService.findById(petType.getId());
+        Owner foundOwner = ownerMapService.findByLastName(ownerLastName);
+        PetType foundPetType = petTypeMapService.findById(petType.getId());
 
         assertEquals(0, petMapService.findAll().size());
 
-        assertNotNull(findedOwner);
-        assertEquals(ownerLastName, findedOwner.getLastName());
+        assertNotNull(foundOwner);
+        assertEquals(ownerLastName, foundOwner.getLastName());
 
-        assertNotNull(findedPetType);
-        assertEquals(petTypeName, findedPetType.getName());
+        assertNotNull(foundPetType);
+        assertEquals(petTypeName, foundPetType.getName());
     }
 
     @Test
     void delete() {
         petMapService.delete(petMapService.findById(petId));
-        Owner findedOwner = ownerMapService.findByLastName(ownerLastName);
-        PetType findedPetType = petTypeMapService.findById(petType.getId());
+        Owner foundOwner = ownerMapService.findByLastName(ownerLastName);
+        PetType foundPetType = petTypeMapService.findById(petType.getId());
 
         assertEquals(0, petMapService.findAll().size());
 
-        assertNotNull(findedOwner);
-        assertEquals(ownerLastName, findedOwner.getLastName());
+        assertNotNull(foundOwner);
+        assertEquals(ownerLastName, foundOwner.getLastName());
 
-        assertNotNull(findedPetType);
-        assertEquals(petTypeName, findedPetType.getName());
+        assertNotNull(foundPetType);
+        assertEquals(petTypeName, foundPetType.getName());
     }
 
 }

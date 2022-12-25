@@ -77,19 +77,19 @@ class PetTypeMapServiceTest {
     @Test
     void delete() {
         petTypeMapService.delete(petTypeMapService.findById(petTypeId));
-        Pet findedPet = petMapService.findById(pet.getId());
+        Pet foundPet = petMapService.findById(pet.getId());
 
         assertEquals(0, petTypeMapService.findAll().size());
-        assertNotNull(findedPet);
+        assertNotNull(foundPet);
     }
 
     @Test
     void deleteById() {
         petTypeMapService.deleteById(petTypeId);
-        Pet findedPet = petMapService.findById(pet.getId());
+        Pet foundPet = petMapService.findById(pet.getId());
 
         assertEquals(0, petTypeMapService.findAll().size());
-        assertNotNull(findedPet);
+        assertNotNull(foundPet);
 
     }
 }

@@ -90,13 +90,13 @@ class PetSDJpaServiceTest {
 
     @Test
     void delete() {
-        petRepository.delete(Pet.builder().build());
+        service.delete(Pet.builder().build());
         verify(petRepository).delete(any());
     }
 
     @Test
     void deleteById() {
-        petRepository.deleteById(returnPet.getId());
+        service.deleteById(returnPet.getId());
         verify(petRepository).deleteById(anyLong());
     }
 }

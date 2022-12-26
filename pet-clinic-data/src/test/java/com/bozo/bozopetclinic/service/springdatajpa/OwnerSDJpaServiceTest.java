@@ -109,13 +109,13 @@ class OwnerSDJpaServiceTest {
 
     @Test
     void delete() {
-        ownerRepository.delete(Owner.builder().id(OWNER_ID).lastName(LAST_NAME).build());
+        service.delete(Owner.builder().id(OWNER_ID).lastName(LAST_NAME).build());
         verify(ownerRepository).delete(any());
     }
 
     @Test
     void deleteById() {
-        ownerRepository.deleteById(OWNER_ID);
+        service.deleteById(OWNER_ID);
         verify(ownerRepository).deleteById(anyLong());
     }
 }

@@ -4,6 +4,7 @@ import com.bozo.bozopetclinic.model.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,4 +84,34 @@ class OwnerMapServiceTest {
         assertNull(smith);
     }
 
+    @Test
+    void findByLastNameLike(){
+        List<Owner> ownerList = ownerMapService.findAllByLastNameLike(lastName.substring(1,2));
+
+        assertNotNull(ownerList);
+        assertNotNull(ownerList.get(0));
+        assertEquals(lastName, ownerList.get(0).getLastName());
+    }
+
+    @Test
+    void findByLastNameLikeManyFound(){
+        ownerMapService.save(Owner.builder().id(ownerId + 1).lastName(lastName + 1).build());
+        ownerMapService.save(Owner.builder().id(ownerId + 2).lastName(lastName + 2).build());
+
+        List<Owner> ownerList = ownerMapService.findAllByLastNameLike(lastName.substring(1,2));
+
+        assertNotNull(ownerList);
+
+        for (Owner owner : ownerList) {
+            assertNotNull(owner);
+        }
+    }
+
+    @Test
+    void findByLastNameLikeNotFound(){
+        List<Owner> ownerList = ownerMapService.findAllByLastNameLike("q");
+
+        assertNotNull(ownerList);
+        assertTrue(ownerList.isEmpty());
+    }
 }

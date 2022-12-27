@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -90,6 +91,32 @@ class OwnerSDJpaServiceTest {
         assertEquals(LAST_NAME, smith.getLastName());
 
         verify(ownerRepository).findByLastName(any());
+    }
+
+    @Test
+    void findByLastNameLike(){
+        Set<Owner> returnOwnersSet = Set.of(returnOwner);
+
+        when(ownerRepository.findAllByLastNameLike(anyString())).thenReturn(returnOwnersSet.stream().toList());
+
+        List<Owner> ownerList = service.findAllByLastNameLike(anyString());
+
+        assertNotNull(ownerList);
+        assertEquals(1, ownerList.size());
+
+        verify(ownerRepository).findAllByLastNameLike(anyString());
+    }
+
+    @Test
+    void findByLastNameLikeNotFound(){
+        when(ownerRepository.findAllByLastNameLike(anyString())).thenReturn(List.of());
+
+        List<Owner> ownerList = service.findAllByLastNameLike(anyString());
+
+        assertNotNull(ownerList);
+        assertEquals(0, ownerList.size());
+
+        verify(ownerRepository).findAllByLastNameLike(anyString());
     }
 
     @Test

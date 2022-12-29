@@ -30,9 +30,7 @@ public class VisitController {
     public Visit loadPetWithVisit(@PathVariable Long petId, Model model){
         Pet pet = petService.findById(petId);
         model.addAttribute("pet", pet);
-        Visit visit = Visit.builder()
-//                .pet(pet)
-                .build();
+        Visit visit = Visit.builder().pet(pet).build();
         pet.getVisits().add(visit);
         return visit;
     }

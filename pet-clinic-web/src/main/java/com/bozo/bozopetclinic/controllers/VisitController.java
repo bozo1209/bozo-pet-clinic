@@ -30,13 +30,15 @@ public class VisitController {
     public Visit loadPetWithVisit(@PathVariable Long petId, Model model){
         Pet pet = petService.findById(petId);
         model.addAttribute("pet", pet);
-        Visit visit = Visit.builder().build();
+        Visit visit = Visit.builder()
+//                .pet(pet)
+                .build();
         pet.getVisits().add(visit);
         return visit;
     }
 
     @GetMapping(path = "/pets/{petId}/visits/new")
-    public String initNewVisitForm(@PathVariable long petId, Model model){
+    public String initNewVisitForm(@PathVariable Long petId, Model model){
         return "pets/createOrUpdateVisitForm";
     }
 

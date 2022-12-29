@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.util.UriTemplate;
@@ -82,6 +83,21 @@ class VisitControllerTest {
         when(petService.findById(anyLong())).thenReturn(pet);
 
         mockMvc.perform(post(visitURI))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(model().attributeExists("visit"))
+                .andExpect(model().attributeExists("pet"))
+                .andExpect(view().name("redirect:/owners/{ownerId}"));
+
+        verify(visitService).save(any());
+    }
+
+    @Test
+    void processNewVisitFormWithDate() throws Exception {
+        when(petService.findById(anyLong())).thenReturn(pet);
+
+        mockMvc.perform(post(visitURI)
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("date","2018-11-11"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(model().attributeExists("visit"))
                 .andExpect(model().attributeExists("pet"))

@@ -5,23 +5,23 @@
     <title>list of vets </title>
 </head>
 <body>
-    <h2 th:text="'list of vets'">vets</h2>
+<h2>Veterinarians</h2>
 
-    <table  class="table table-striped">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>first name</th>
-            <th>last name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="vet : ${vets}">
-            <td th:text="${vet.id}">1</td>
-            <td th:text="${vet.firstName}">jone</td>
-            <td th:text="${vet.lastName}">doe</td>
-        </tr>
-        </tbody>
-    </table>
+<table id="vets" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Specialties</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vet : ${vets}">
+        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
+        <td><span th:each="specialty : ${vet.specialities}"
+                  th:text="${specialty.description + ' '}" /> <span
+                th:if="${vet?.specialities?.size() == 0}">none</span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
